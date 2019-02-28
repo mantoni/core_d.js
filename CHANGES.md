@@ -1,5 +1,12 @@
 # Changes
 
+## 1.0.1
+
+- 🐛 [`857bb3b`](https://github.com/mantoni/core_d.js/commit/857bb3b48b425a46f6216f114063d24b8c1a0ba2)
+  Add missing `supports-color` dependency
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-02-28._
+
 ## 1.0.0
 
 - ✨ [`b535cf7`](https://github.com/mantoni/core_d.js/commit/b535cf72556b291f4a63e2655ac06336b3cc3445)
