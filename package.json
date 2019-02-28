@@ -40,5 +40,8 @@
     "eslint": "^5.14.1",
     "mocha": "^5.2.0",
     "mocha-referee-sinon": "^1.0.0"
+  },
+  "dependencies": {
+    "supports-color": "^5.5.0"
   }
 }
