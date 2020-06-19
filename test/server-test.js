@@ -258,6 +258,7 @@ describe('server', () => {
       assert.calledWith(fs.stat, 'package-lock.json');
       assert.calledWith(fs.stat, 'npm-shrinkwrap.json');
       assert.calledWith(fs.stat, 'yarn.lock');
+      assert.calledWith(fs.stat, 'pnpm-lock.yaml');
     });
 
     it('does not invoke until stat calls yield', () => {
@@ -273,6 +274,7 @@ describe('server', () => {
       fs.stat.getCall(1).callback(new Error());
       fs.stat.getCall(2).callback(new Error());
       fs.stat.getCall(3).callback(new Error());
+      fs.stat.getCall(4).callback(new Error());
 
       assert.calledOnce(service.invoke);
     });
@@ -288,6 +290,7 @@ describe('server', () => {
       fs.stat.getCall(1).callback(null, { mtimeMs: 42 });
       fs.stat.getCall(2).callback(null, { mtimeMs: 2 });
       fs.stat.getCall(3).callback(null, { mtimeMs: 3 });
+      fs.stat.getCall(4).callback(null, { mtimeMs: 12 });
 
       assert.calledOnceWith(service.invoke, json.cwd, json.args, json.text, 42);
     });
