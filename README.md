@@ -94,6 +94,7 @@ text, mtime)`. The passed arguments are:
     - `package-lock.json`
     - `npm-shrinkwrap.json`
     - `yarn.lock`
+    - `pnpm-lock.yaml`
   Use this to flush any caches if `mtime` is newer than the last value received.
 
 The service can optionally implement a `getStatus()` function to return
