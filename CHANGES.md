@@ -1,5 +1,14 @@
 # Changes
 
+## 2.0.0
+
+- 💥 [`340640b`](https://github.com/mantoni/core_d.js/commit/340640b066f38ef32f2ad01e315ff0c9e0cee2d6)
+  Drop node 6 and 8 support, add node 12 and 14
+- 📚 [`eee1f06`](https://github.com/mantoni/core_d.js/commit/eee1f06a3b4316ea19a45b0510f0d252d3d2b21b)
+  Update compatibility notes for `v2.0.0`
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-06-22._
+
 ## 1.1.0
 
 - 🍏 [`70385ab`](https://github.com/mantoni/core_d.js/commit/70385ab8a508678fe9035e7f9e613a144533b2d3)
