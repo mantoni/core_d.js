@@ -42,7 +42,7 @@ describe('client', () => {
     client[method](...args);
 
     assert.calledOnceWith(out.write, 'Not running\n');
-    refute.defined(process.exitCode);
+    assert.isUndefined(process.exitCode);
   }
 
   function verifyCouldNotConnect(method, ...args) {
@@ -108,7 +108,7 @@ describe('client', () => {
       socket.emit('data', 'Some response');
       socket.emit('end');
       assert.calledWith(out.write, 'Some response');
-      refute.defined(process.exitCode);
+      assert.isUndefined(process.exitCode);
     });
 
   });
@@ -154,7 +154,7 @@ describe('client', () => {
       socket.end.firstCall.callback();
 
       assert.calledOnce(callback);
-      refute.defined(process.exitCode);
+      assert.isUndefined(process.exitCode);
     });
 
     it('writes server output back to connection', () => {
@@ -167,7 +167,7 @@ describe('client', () => {
       socket.emit('data', 'Some response');
       socket.emit('end');
       assert.calledWith(out.write, 'Some response');
-      refute.defined(process.exitCode);
+      assert.isUndefined(process.exitCode);
     });
 
     it('does not write empty line on end', () => {
@@ -246,7 +246,7 @@ describe('client', () => {
       socket.emit('data', 'Some response');
       socket.emit('end');
       assert.calledOnceWith(out.write, 'Some response');
-      refute.defined(process.exitCode);
+      assert.isUndefined(process.exitCode);
     }
 
     it('sends token and { cwd, args, text } to server', () => {
@@ -277,7 +277,7 @@ describe('client', () => {
 
       assert.calledWith(out.write, 'Some response\n');
       assert.calledWith(out.write, 'from service');
-      refute.defined(process.exitCode);
+      assert.isUndefined(process.exitCode);
     });
 
     function launch() {
