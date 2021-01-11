@@ -84,7 +84,7 @@ Environment variables:
   `require.resolve('./relative-path')` to receive the resolved path.
 
 Your service must implement a function with the signature `invoke(cwd, args,
-text, mtime)`. The passed arguments are:
+text, mtime, callback)`. The passed arguments are:
 
 - `cwd`: The current working directory.
 - `args`: The first argument passed to `core_d.invoke`.
@@ -96,6 +96,7 @@ text, mtime)`. The passed arguments are:
     - `yarn.lock`
     - `pnpm-lock.yaml`
   Use this to flush any caches if `mtime` is newer than the last value received.
+- `callback`: A callback function with the signature `(err, response)`.
 
 The service can optionally implement a `getStatus()` function to return
 additional status information when calling `core_d.status()`.
