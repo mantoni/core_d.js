@@ -200,7 +200,7 @@ describe('server', () => {
 
     it('invokes service with JSON arguments', () => {
       sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
-      sinon.replace(service, 'invoke', sinon.fake.returns('Oh, hi!\n'));
+      sinon.replace(service, 'invoke', sinon.fake.yields(null, 'Oh, hi!\n'));
       start();
 
       request(connection, `${token} ${JSON.stringify(json)}`);
@@ -212,7 +212,7 @@ describe('server', () => {
 
     it('invokes service with plain text arguments', () => {
       sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
-      sinon.replace(service, 'invoke', sinon.fake.returns('Oh, hi!\n'));
+      sinon.replace(service, 'invoke', sinon.fake.yields(null, 'Oh, hi!\n'));
       start();
 
       request(connection,
@@ -227,6 +227,17 @@ describe('server', () => {
       sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
         sinon.fake.throws(new Error('Whatever')));
+      start();
+
+      request(connection, `${token} ${JSON.stringify(json)}`);
+
+      assert.calledOnceWith(connection.end, 'Error: Whatever\n# exit 1');
+    });
+
+    it('handles error response from service', () => {
+      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      sinon.replace(service, 'invoke',
+        sinon.fake.yields(new Error('Whatever')));
       start();
 
       request(connection, `${token} ${JSON.stringify(json)}`);
