@@ -1,6 +1,6 @@
 # core\_d
 
-[![Build Status]](https://travis-ci.org/mantoni/core_d.js)
+![Build Status](https://github.com/mantoni/core_d.js/workflows/Build/badge.svg)
 [![SemVer]](http://semver.org)
 [![License]](https://github.com/mantoni/core\_d.js/blob/master/LICENSE)
 
@@ -129,7 +129,6 @@ Or if you want to work with stdin:
 
 MIT
 
-[Build Status]: https://img.shields.io/travis/mantoni/core_d.js/master.svg
 [SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [License]: https://img.shields.io/npm/l/core_d.svg
 [eslint_d]: https://github.com/mantoni/eslint_d.js
