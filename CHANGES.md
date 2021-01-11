@@ -1,5 +1,30 @@
 # Changes
 
+## 3.0.0
+
+- 💥 [`96dc4a1`](https://github.com/mantoni/core_d.js/commit/96dc4a133a8ec106ac457ae8d70e3bffedadda1c)
+  Breaking: Pass callback to invoke for result handling
+- 📚 [`2ff6e0a`](https://github.com/mantoni/core_d.js/commit/2ff6e0a1bb2f7c6d011c1dd36e7d329f664659e4)
+  Add compatibility notes for v3
+- 📚 [`16f1680`](https://github.com/mantoni/core_d.js/commit/16f1680e68cdbc0bb0efb395e82553255578c9f3)
+  Document `invoke` API change
+- ✨ [`423d95b`](https://github.com/mantoni/core_d.js/commit/423d95b4e9c420db33f902ee9d003143cc907e9e)
+  Ugrade referee-sinon
+- ✨ [`544a718`](https://github.com/mantoni/core_d.js/commit/544a718a2b8355ba3823b6ca658b911824b40db8)
+  Update mocha
+- ✨ [`bed840f`](https://github.com/mantoni/core_d.js/commit/bed840f3a08aadf1a5e1db1a18f10beea1c409cf)
+  Update eslint
+- ✨ [`88ff76c`](https://github.com/mantoni/core_d.js/commit/88ff76c2cc2130561b6930d1a5baf8a703ea9a87)
+  Upgrade supports-color to v8
+- ✨ [`4f74cdf`](https://github.com/mantoni/core_d.js/commit/4f74cdf3c75b4e612f9f6aae5bd5e9c2b97cfad1)
+  Remove Travis config
+- ✨ [`0802f5f`](https://github.com/mantoni/core_d.js/commit/0802f5f8b615cc1ef9386efd1a755c9e00c20182)
+  Configure GitHub actions
+- ✨ [`2ad5a48`](https://github.com/mantoni/core_d.js/commit/2ad5a48cf6428527c819e62fdba5234e23df4a59)
+  Bump lodash from 4.17.15 to 4.17.19 (dependabot[bot])
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-01-11._
+
 ## 2.0.0
 
 - 💥 [`340640b`](https://github.com/mantoni/core_d.js/commit/340640b066f38ef32f2ad01e315ff0c9e0cee2d6)
