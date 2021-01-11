@@ -42,6 +42,6 @@
     "mocha-referee-sinon": "^1.0.0"
   },
   "dependencies": {
-    "supports-color": "^5.5.0"
+    "supports-color": "^8.1.0"
   }
 }
