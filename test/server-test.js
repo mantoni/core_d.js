@@ -245,6 +245,19 @@ describe('server', () => {
       assert.calledOnceWith(connection.end, 'Error: Whatever\n# exit 1');
     });
 
+    it('handles error response from service with specified exit code', () => {
+      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      const serviceError = new Error('Whatever');
+      serviceError.exitCode = 2;
+      sinon.replace(service, 'invoke',
+        sinon.fake.yields(serviceError));
+      start();
+
+      request(connection, `${token} ${JSON.stringify(json)}`);
+
+      assert.calledOnceWith(connection.end, 'Error: Whatever\n# exit 2');
+    });
+
     it('does not throw if connection died after exception from service', () => {
       sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
