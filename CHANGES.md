@@ -1,5 +1,28 @@
 # Changes
 
+## 3.1.0
+
+- 🍏 [`c5b2d8d`](https://github.com/mantoni/core_d.js/commit/c5b2d8d68328716a3070fa2fb0c2d5f66b43e8c0)
+  Handle exit code sent by service (Jose Alvarez)
+- 🛡 [`96f5ca5`](https://github.com/mantoni/core_d.js/commit/96f5ca5bc2478baebb0d72ad27a97b3023441e20)
+  Bump hosted-git-info from 3.0.4 to 3.0.8 (dependabot[bot])
+- 🛡 [`d81a0e7`](https://github.com/mantoni/core_d.js/commit/d81a0e762960c7f2a3ad19ade4fcda3614639689)
+  Bump lodash from 4.17.19 to 4.17.21 (dependabot[bot])
+- ✨ [`51d547d`](https://github.com/mantoni/core_d.js/commit/51d547d260ac488fb9c92c4d4f3217bdda1830fd)
+  Update eslint
+- ✨ [`f1b707e`](https://github.com/mantoni/core_d.js/commit/f1b707ecdf2d1e83856117166466fa26b47ee4d0)
+  Update Studio Changes
+- ✨ [`1d1db24`](https://github.com/mantoni/core_d.js/commit/1d1db2437596120be9d6e0f4fab33eb6f52741d1)
+  Update mocha
+- ✨ [`ed45678`](https://github.com/mantoni/core_d.js/commit/ed4567852c47be7666162e2eead7e2c4ff157a5d)
+  Upgrade referee-sinon to latest
+- ✨ [`20e3cfc`](https://github.com/mantoni/core_d.js/commit/20e3cfc80f9c8aa2f9302b7d0361ff8ee6fc5b72)
+  Run GitHub actions on PRs
+- 📚 [`bfe1f7c`](https://github.com/mantoni/core_d.js/commit/bfe1f7c5d5211f006e13217e8f436f507a5da450)
+  Change badge
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-09._
+
 ## 3.0.0
 
 - 💥 [`96dc4a1`](https://github.com/mantoni/core_d.js/commit/96dc4a133a8ec106ac457ae8d70e3bffedadda1c)
