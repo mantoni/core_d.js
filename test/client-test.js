@@ -267,6 +267,16 @@ describe('client', () => {
       assert.equals(process.exitCode, 1);
     });
 
+    it('sets exitCode to code specified in response', () => {
+      invoke();
+
+      socket.emit('data', 'Some response\n# exit 99');
+      socket.emit('end');
+
+      assert.calledOnceWith(out.write, 'Some response\n');
+      assert.equals(process.exitCode, 99);
+    });
+
     it('streams lines', () => {
       invoke();
 
