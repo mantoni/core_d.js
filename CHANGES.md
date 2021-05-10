@@ -1,5 +1,12 @@
 # Changes
 
+## 3.2.0
+
+- 🍏 [`12c60c8`](https://github.com/mantoni/core_d.js/commit/12c60c8efbcb25d5f6b8613dcba4cf3796c1194f)
+  XDG Compliance (#14) (Jaden Pleasants)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-10._
+
 ## 3.1.0
 
 - 🍏 [`c5b2d8d`](https://github.com/mantoni/core_d.js/commit/c5b2d8d68328716a3070fa2fb0c2d5f66b43e8c0)
