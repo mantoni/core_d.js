@@ -7,7 +7,8 @@ const { assert, refute, sinon } = require('@sinonjs/referee-sinon');
 const portfile = require('../lib/portfile');
 
 const home_env = process.platform === 'win32' ? 'USERPROFILE' : 'HOME';
-const data_file = `${process.env[home_env]}/.core_d`;
+const data_dir = process.env.XDG_RUNTIME_DIR || process.env[home_env];
+const data_file = `${data_dir}/.core_d`;
 const token = crypto.randomBytes(8).toString('hex');
 
 describe('portfile', () => {
