@@ -72,7 +72,7 @@ describe('server', () => {
   });
 
   it('closes connection without writing anything for empty request', () => {
-    sinon.replace(fs, 'stat', sinon.fake());
+    sinon.replace(fs, 'readFile', sinon.fake());
     start();
 
     request(connection);
@@ -84,7 +84,7 @@ describe('server', () => {
   describe('stop', () => {
 
     beforeEach(() => {
-      sinon.replace(fs, 'stat', sinon.fake());
+      sinon.replace(fs, 'readFile', sinon.fake());
     });
 
     it('closes connection and server for "stop" command', () => {
@@ -141,7 +141,7 @@ describe('server', () => {
       refute.called(net_server.close);
     });
 
-    it('stops server without waiting for stat calls', () => {
+    it('stops server without waiting for readFile calls', () => {
       start();
 
       request(connection, `${token} stop`);
@@ -155,7 +155,7 @@ describe('server', () => {
   describe('status', () => {
 
     beforeEach(() => {
-      sinon.replace(fs, 'stat', sinon.fake());
+      sinon.replace(fs, 'readFile', sinon.fake());
     });
 
     it('prints service status and closes connection', () => {
@@ -179,7 +179,7 @@ describe('server', () => {
       refute.called(service.getStatus);
     });
 
-    it('gets "status" without waiting for stat calls', () => {
+    it('gets "status" without waiting for readFile calls', () => {
       sinon.replace(service, 'getStatus', sinon.fake.returns('Yes yo!'));
       start();
 
@@ -199,7 +199,7 @@ describe('server', () => {
     };
 
     it('invokes service with JSON arguments', () => {
-      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke', sinon.fake.yields(null, 'Oh, hi!\n'));
       start();
 
@@ -211,7 +211,7 @@ describe('server', () => {
     });
 
     it('invokes service with plain text arguments', () => {
-      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke', sinon.fake.yields(null, 'Oh, hi!\n'));
       start();
 
@@ -224,7 +224,7 @@ describe('server', () => {
     });
 
     it('handles exception from service', () => {
-      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
         sinon.fake.throws(new Error('Whatever')));
       start();
@@ -235,7 +235,7 @@ describe('server', () => {
     });
 
     it('handles error response from service', () => {
-      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
         sinon.fake.yields(new Error('Whatever')));
       start();
@@ -246,7 +246,7 @@ describe('server', () => {
     });
 
     it('handles error response from service with specified exit code', () => {
-      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       const serviceError = new Error('Whatever');
       serviceError.exitCode = 2;
       sinon.replace(service, 'invoke',
@@ -259,7 +259,7 @@ describe('server', () => {
     });
 
     it('does not throw if connection died after exception from service', () => {
-      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
+      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
         sinon.fake.throws(new Error('Whatever')));
       connection.end = sinon.fake.throws(new Error('Oh dear!'));
@@ -272,21 +272,21 @@ describe('server', () => {
     });
 
     it('stats common package manager files on connect', () => {
-      sinon.replace(fs, 'stat', sinon.fake());
+      sinon.replace(fs, 'readFile', sinon.fake());
       sinon.replace(service, 'invoke', sinon.fake());
       start();
 
       request(connection, `${token} ${JSON.stringify(json)}`);
 
-      assert.calledWith(fs.stat, 'package.json');
-      assert.calledWith(fs.stat, 'package-lock.json');
-      assert.calledWith(fs.stat, 'npm-shrinkwrap.json');
-      assert.calledWith(fs.stat, 'yarn.lock');
-      assert.calledWith(fs.stat, 'pnpm-lock.yaml');
+      assert.calledWith(fs.readFile, 'package.json');
+      assert.calledWith(fs.readFile, 'package-lock.json');
+      assert.calledWith(fs.readFile, 'npm-shrinkwrap.json');
+      assert.calledWith(fs.readFile, 'yarn.lock');
+      assert.calledWith(fs.readFile, 'pnpm-lock.yaml');
     });
 
-    it('does not invoke until stat calls yield', () => {
-      sinon.replace(fs, 'stat', sinon.fake());
+    it('does not invoke until readFile calls yield', () => {
+      sinon.replace(fs, 'readFile', sinon.fake());
       sinon.replace(service, 'invoke', sinon.fake());
       start();
 
@@ -294,29 +294,35 @@ describe('server', () => {
 
       refute.called(service.invoke);
 
-      fs.stat.getCall(0).callback(new Error());
-      fs.stat.getCall(1).callback(new Error());
-      fs.stat.getCall(2).callback(new Error());
-      fs.stat.getCall(3).callback(new Error());
-      fs.stat.getCall(4).callback(new Error());
+      fs.readFile.getCall(0).callback(new Error());
+      fs.readFile.getCall(1).callback(new Error());
+      fs.readFile.getCall(2).callback(new Error());
+      fs.readFile.getCall(3).callback(new Error());
+      fs.readFile.getCall(4).callback(new Error());
 
       assert.calledOnce(service.invoke);
     });
 
-    it('passes largest mtime value to service', () => {
-      sinon.replace(fs, 'stat', sinon.fake());
+    it('passes hash of combination of file contents to service', () => {
+      sinon.replace(fs, 'readFile', sinon.fake());
       sinon.replace(service, 'invoke', sinon.fake());
       start();
 
       request(connection, `${token} ${JSON.stringify(json)}`);
 
-      fs.stat.getCall(0).callback(null, { mtimeMs: 7 });
-      fs.stat.getCall(1).callback(null, { mtimeMs: 42 });
-      fs.stat.getCall(2).callback(null, { mtimeMs: 2 });
-      fs.stat.getCall(3).callback(null, { mtimeMs: 3 });
-      fs.stat.getCall(4).callback(null, { mtimeMs: 12 });
+      fs.readFile.getCall(0).callback(null, 'a');
+      fs.readFile.getCall(1).callback(null, 'b');
+      fs.readFile.getCall(2).callback(null, 'c');
+      fs.readFile.getCall(3).callback(null, 'd');
+      fs.readFile.getCall(4).callback(null, 'e');
 
-      assert.calledOnceWith(service.invoke, json.cwd, json.args, json.text, 42);
+      const expectedHash = crypto
+        .createHash('md5')
+        .update('abcde')
+        .digest('base64');
+
+      assert.calledOnceWith(service.invoke, json.cwd, json.args, json.text,
+        expectedHash);
     });
   });
 
