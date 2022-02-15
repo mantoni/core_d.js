@@ -47,7 +47,7 @@ The `service.js` file must expose an `invoke` function like this:
 /*
  * The core_d service entry point.
  */
-exports.invoke = function (cwd, args, text, mtime) {
+exports.invoke = function (cwd, args, text, hash) {
   return 'Your response';
 };
 ```
@@ -84,18 +84,18 @@ Environment variables:
   `require.resolve('./relative-path')` to receive the resolved path.
 
 Your service must implement a function with the signature `invoke(cwd, args,
-text, mtime, callback)`. The passed arguments are:
+text, hash, callback)`. The passed arguments are:
 
 - `cwd`: The current working directory.
 - `args`: The first argument passed to `core_d.invoke`.
 - `text`: The second argument passed to `core_d.invoke`.
-- `mtime`: The newest `mtime` returns from `fs.stat` on any of these files:
+- `hash`: The MD5 hash of the combined content of these files:
     - `package.json`
     - `package-lock.json`
     - `npm-shrinkwrap.json`
     - `yarn.lock`
     - `pnpm-lock.yaml`
-  Use this to flush any caches if `mtime` is newer than the last value received.
+  Use this to flush any caches if this hash differs from the last value received.
 - `callback`: A callback function with the signature `(err, response)`.
 
 The service can optionally implement a `getStatus()` function to return
