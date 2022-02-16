@@ -39,17 +39,17 @@ describe('server', () => {
     net_server.listen.callback();
   }
 
-  function connect(connection) {
-    net_server.emit('connection', connection);
-    net.createServer.callback(connection);
+  function connect(con) {
+    net_server.emit('connection', con);
+    net.createServer.callback(con);
   }
 
-  function request(connection, text) {
-    connect(connection);
+  function request(con, text) {
+    connect(con);
     if (text) {
-      connection.emit('data', text);
+      con.emit('data', text);
     }
-    connection.emit('end');
+    con.emit('end');
   }
 
   it('starts server and listens on random port', () => {

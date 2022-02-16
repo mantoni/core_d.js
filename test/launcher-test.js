@@ -35,9 +35,9 @@ describe('launcher', () => {
 
   it('launches child process', () => {
     sinon.replace(portfile, 'read', sinon.fake.yields(null));
-    const callback = sinon.spy();
+    const cb = sinon.spy();
 
-    launcher.launch(callback);
+    launcher.launch(cb);
 
     assert.calledOnceWith(child_process.spawn, 'node', [daemon], {
       detached: true,
@@ -48,7 +48,7 @@ describe('launcher', () => {
     });
     assert.calledOnce(child.unref);
     assert.calledOnce(portfile.read);
-    refute.called(callback);
+    refute.called(cb);
   });
 
   function launch() {

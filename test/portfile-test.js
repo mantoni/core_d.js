@@ -20,7 +20,7 @@ describe('portfile', () => {
 
       portfile.write(8765, token);
 
-      // eslint-disable-next-line no-sync
+      // eslint-disable-next-line node/no-sync
       assert.calledOnceWith(fs.writeFileSync, data_file, `8765 ${token}`);
     });
 
@@ -57,9 +57,9 @@ describe('portfile', () => {
 
       portfile.unlink();
 
-      // eslint-disable-next-line no-sync
+      // eslint-disable-next-line node/no-sync
       assert.calledOnceWith(fs.existsSync, data_file);
-      // eslint-disable-next-line no-sync
+      // eslint-disable-next-line node/no-sync
       assert.calledOnceWith(fs.unlinkSync, data_file);
     });
 
@@ -69,7 +69,7 @@ describe('portfile', () => {
 
       portfile.unlink();
 
-      // eslint-disable-next-line no-sync
+      // eslint-disable-next-line node/no-sync
       refute.called(fs.unlinkSync);
     });
 
