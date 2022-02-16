@@ -1,5 +1,24 @@
 # Changes
 
+## 4.0.0
+
+- 💥 [`b198007`](https://github.com/mantoni/core_d.js/commit/b19800715317e6e003d7dfab801ac81e1617abd1)
+  Invoke service with content hash of package files rather than last modification time (Dara Dermody)
+- 💥 [`43dcca2`](https://github.com/mantoni/core_d.js/commit/43dcca2e54ee4cd01893dc713339eb15dbebeba1)
+  Drop node 10, support node 16
+- 📚 [`d476ed6`](https://github.com/mantoni/core_d.js/commit/d476ed693af324c0ee3ec24a2d225145d8da3fc9)
+  Document node 16 support
+- ✨ [`b1bd3a1`](https://github.com/mantoni/core_d.js/commit/b1bd3a17309d4a74684dcdbc398afe4fc3a48387)
+  Upgrade eslint, eslint-config and plugins
+- ✨ [`fff26f0`](https://github.com/mantoni/core_d.js/commit/fff26f060e1bfe3c430c765d09d0deab0683c3fe)
+  Upgrade referee-sinon
+- ✨ [`63e98b7`](https://github.com/mantoni/core_d.js/commit/63e98b7734086fdbb53c5e2e66973c6a156c9566)
+  Upgrade mocha
+- 🛡 [`6c23271`](https://github.com/mantoni/core_d.js/commit/6c2327150fa409abd713b6acca262889c8abecef)
+  npm audit
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2022-02-16._
+
 ## 3.2.0
 
 - 🍏 [`12c60c8`](https://github.com/mantoni/core_d.js/commit/12c60c8efbcb25d5f6b8613dcba4cf3796c1194f)
