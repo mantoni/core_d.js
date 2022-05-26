@@ -1,5 +1,12 @@
 # Changes
 
+## 5.0.1
+
+- 📚 [`31fc5e6`](https://github.com/mantoni/core_d.js/commit/31fc5e618823cb714f421c925e4fe30a5acd197b)
+  Fix API documentation
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2022-05-26._
+
 ## 5.0.0
 
 - 💥 [`ded6fe6`](https://github.com/mantoni/core_d.js/commit/ded6fe6b10c0d44fad76a4b2b08bdd8e3acc38e7)

@@ -1,6 +1,6 @@
 {
   "name": "core_d",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Offload your heavy lifting to a daemon",
   "keywords": [
     "daemon",
