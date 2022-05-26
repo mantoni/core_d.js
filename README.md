@@ -47,8 +47,8 @@ The `service.js` file must expose an `invoke` function like this:
 /*
  * The core_d service entry point.
  */
-exports.invoke = function (cwd, args, text, hash) {
-  return 'Your response';
+exports.invoke = function (cwd, args, text, callback) {
+  callback(null, 'Your response');
 };
 ```
 
@@ -74,7 +74,7 @@ The `core_d` client exposes these functions:
 - `status()`: Prints a status message saying whether the server is running or
   not. If the server is running and your service implements `getStatus()`, the
   return value will be printed as well.
-- `invoke(cwd, args[, text])`: Invokes the `invoke` methods in the service.
+- `invoke(args[, text])`: Invokes the `invoke` methods in the service.
 
 Environment variables:
 
@@ -84,18 +84,11 @@ Environment variables:
   `require.resolve('./relative-path')` to receive the resolved path.
 
 Your service must implement a function with the signature `invoke(cwd, args,
-text, hash, callback)`. The passed arguments are:
+text, callback)`. The passed arguments are:
 
 - `cwd`: The current working directory.
 - `args`: The first argument passed to `core_d.invoke`.
 - `text`: The second argument passed to `core_d.invoke`.
-- `hash`: The MD5 hash of the combined content of these files:
-    - `package.json`
-    - `package-lock.json`
-    - `npm-shrinkwrap.json`
-    - `yarn.lock`
-    - `pnpm-lock.yaml`
-  Use this to flush any caches if this hash differs from the last value received.
 - `callback`: A callback function with the signature `(err, response)`.
 
 The service can optionally implement a `getStatus()` function to return
@@ -121,6 +114,7 @@ Or if you want to work with stdin:
 
 ## Compatibility
 
+- `5.0.0`: node 12, 14 and 16
 - `4.0.0`: node 12, 14 and 16
 - `3.0.0`: node 10, 12 and 14
 - `2.0.0`: node 10, 12 and 14
