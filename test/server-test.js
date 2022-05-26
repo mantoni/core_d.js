@@ -1,7 +1,6 @@
 /*eslint-env mocha*/
 'use strict';
 
-const fs = require('fs');
 const net = require('net');
 const crypto = require('crypto');
 const EventEmitter = require('events');
@@ -72,7 +71,6 @@ describe('server', () => {
   });
 
   it('closes connection without writing anything for empty request', () => {
-    sinon.replace(fs, 'readFile', sinon.fake());
     start();
 
     request(connection);
@@ -82,10 +80,6 @@ describe('server', () => {
   });
 
   describe('stop', () => {
-
-    beforeEach(() => {
-      sinon.replace(fs, 'readFile', sinon.fake());
-    });
 
     it('closes connection and server for "stop" command', () => {
       start();
@@ -154,10 +148,6 @@ describe('server', () => {
 
   describe('status', () => {
 
-    beforeEach(() => {
-      sinon.replace(fs, 'readFile', sinon.fake());
-    });
-
     it('prints service status and closes connection', () => {
       sinon.replace(service, 'getStatus', sinon.fake.returns('Oh, hi!\n'));
       start();
@@ -199,7 +189,6 @@ describe('server', () => {
     };
 
     it('invokes service with JSON arguments', () => {
-      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke', sinon.fake.yields(null, 'Oh, hi!\n'));
       start();
 
@@ -211,7 +200,6 @@ describe('server', () => {
     });
 
     it('invokes service with plain text arguments', () => {
-      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke', sinon.fake.yields(null, 'Oh, hi!\n'));
       start();
 
@@ -224,7 +212,6 @@ describe('server', () => {
     });
 
     it('handles exception from service', () => {
-      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
         sinon.fake.throws(new Error('Whatever')));
       start();
@@ -235,7 +222,6 @@ describe('server', () => {
     });
 
     it('handles error response from service', () => {
-      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
         sinon.fake.yields(new Error('Whatever')));
       start();
@@ -246,7 +232,6 @@ describe('server', () => {
     });
 
     it('handles error response from service with specified exit code', () => {
-      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       const serviceError = new Error('Whatever');
       serviceError.exitCode = 2;
       sinon.replace(service, 'invoke',
@@ -259,7 +244,6 @@ describe('server', () => {
     });
 
     it('does not throw if connection died after exception from service', () => {
-      sinon.replace(fs, 'readFile', sinon.fake.yields(new Error()));
       sinon.replace(service, 'invoke',
         sinon.fake.throws(new Error('Whatever')));
       connection.end = sinon.fake.throws(new Error('Oh dear!'));
@@ -269,60 +253,6 @@ describe('server', () => {
         request(connection, `${token} ${JSON.stringify(json)}`);
       });
       assert.calledOnce(connection.end); // Verify actually called
-    });
-
-    it('stats common package manager files on connect', () => {
-      sinon.replace(fs, 'readFile', sinon.fake());
-      sinon.replace(service, 'invoke', sinon.fake());
-      start();
-
-      request(connection, `${token} ${JSON.stringify(json)}`);
-
-      assert.calledWith(fs.readFile, 'package.json');
-      assert.calledWith(fs.readFile, 'package-lock.json');
-      assert.calledWith(fs.readFile, 'npm-shrinkwrap.json');
-      assert.calledWith(fs.readFile, 'yarn.lock');
-      assert.calledWith(fs.readFile, 'pnpm-lock.yaml');
-    });
-
-    it('does not invoke until readFile calls yield', () => {
-      sinon.replace(fs, 'readFile', sinon.fake());
-      sinon.replace(service, 'invoke', sinon.fake());
-      start();
-
-      request(connection, `${token} ${JSON.stringify(json)}`);
-
-      refute.called(service.invoke);
-
-      fs.readFile.getCall(0).callback(new Error());
-      fs.readFile.getCall(1).callback(new Error());
-      fs.readFile.getCall(2).callback(new Error());
-      fs.readFile.getCall(3).callback(new Error());
-      fs.readFile.getCall(4).callback(new Error());
-
-      assert.calledOnce(service.invoke);
-    });
-
-    it('passes hash of combination of file contents to service', () => {
-      sinon.replace(fs, 'readFile', sinon.fake());
-      sinon.replace(service, 'invoke', sinon.fake());
-      start();
-
-      request(connection, `${token} ${JSON.stringify(json)}`);
-
-      fs.readFile.getCall(0).callback(null, 'a');
-      fs.readFile.getCall(1).callback(null, 'b');
-      fs.readFile.getCall(2).callback(null, 'c');
-      fs.readFile.getCall(3).callback(null, 'd');
-      fs.readFile.getCall(4).callback(null, 'e');
-
-      const expectedHash = crypto
-        .createHash('md5')
-        .update('abcde')
-        .digest('base64');
-
-      assert.calledOnceWith(service.invoke, json.cwd, json.args, json.text,
-        expectedHash);
     });
   });
 
