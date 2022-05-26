@@ -1,5 +1,14 @@
 # Changes
 
+## 5.0.0
+
+- 💥 [`ded6fe6`](https://github.com/mantoni/core_d.js/commit/ded6fe6b10c0d44fad76a4b2b08bdd8e3acc38e7)
+  __BREAKING:__ Remove broken package manager file checks
+- 🛡 [`e7fe811`](https://github.com/mantoni/core_d.js/commit/e7fe811225370886a5abce0cd8d32dc8c26cad1d)
+  Bump minimist from 1.2.5 to 1.2.6 (dependabot[bot])
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2022-05-26._
+
 ## 4.0.0
 
 - 💥 [`b198007`](https://github.com/mantoni/core_d.js/commit/b19800715317e6e003d7dfab801ac81e1617abd1)
