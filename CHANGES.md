@@ -1,5 +1,12 @@
 # Changes
 
+## 6.0.0
+
+- [`d76e925`](https://github.com/mantoni/core_d.js/commit/d76e92541e1de2602bc8716520fb4bd1417245dd)
+  fix: write errors to stderr (#26) (fsouza)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2023-09-22._
+
 ## 5.0.1
 
 - 📚 [`31fc5e6`](https://github.com/mantoni/core_d.js/commit/31fc5e618823cb714f421c925e4fe30a5acd197b)
