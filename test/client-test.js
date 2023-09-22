@@ -30,6 +30,7 @@ describe('client', () => {
     socket = new EventEmitter();
     socket.end = sinon.fake();
     sinon.replace(out, 'write', sinon.fake());
+    sinon.replace(out, 'writeError', sinon.fake());
   });
 
   afterEach(() => {
@@ -41,7 +42,7 @@ describe('client', () => {
 
     client[method](...args);
 
-    assert.calledOnceWith(out.write, 'Not running\n');
+    assert.calledOnceWith(out.writeError, 'Not running\n');
     assert.isUndefined(process.exitCode);
   }
 
@@ -55,7 +56,7 @@ describe('client', () => {
 
     socket.emit('error', new Error());
 
-    assert.calledOnceWith(out.write, 'Could not connect\n');
+    assert.calledOnceWith(out.writeError, 'Could not connect\n');
     assert.equals(process.exitCode, 1);
   }
 
@@ -81,7 +82,7 @@ describe('client', () => {
       client.start();
       net.connect.firstCall.callback();
 
-      assert.calledOnceWith(out.write, 'Already running\n');
+      assert.calledOnceWith(out.writeError, 'Already running\n');
     });
 
   });
@@ -317,7 +318,7 @@ describe('client', () => {
 
       launcher.launch.firstCall.callback('Could not connect');
 
-      assert.calledOnceWith(out.write, 'Could not connect\n');
+      assert.calledOnceWith(out.writeError, 'Could not connect\n');
       assert.equals(process.exitCode, 1);
     });
 
@@ -330,7 +331,7 @@ describe('client', () => {
       socket.emit('error', new Error());
 
       refute.called(launcher.launch);
-      assert.calledOnceWith(out.write, 'Could not connect\n');
+      assert.calledOnceWith(out.writeError, 'Could not connect\n');
       assert.equals(process.exitCode, 1);
     });
 

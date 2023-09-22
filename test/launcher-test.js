@@ -184,13 +184,13 @@ describe('launcher', () => {
 
   it('prints message and does not invoke callback if already running', () => {
     sinon.replace(portfile, 'read', sinon.fake.yields({ port: 7654, token }));
-    sinon.replace(out, 'write', sinon.fake());
+    sinon.replace(out, 'writeError', sinon.fake());
     const connect = sinon.replace(net, 'connect', sinon.fake.returns(socket));
 
     launcher.launch(callback);
     connect.firstCall.callback();
 
-    assert.calledOnceWith(out.write, 'Already running\n');
+    assert.calledOnceWith(out.writeError, 'Already running\n');
     refute.called(callback);
   });
 
