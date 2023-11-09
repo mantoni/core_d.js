@@ -27,6 +27,8 @@ const cmd = process.argv[2];
 process.env.CORE_D_TITLE = 'your_d';
 process.env.CORE_D_DOTFILE = '.your_d';
 process.env.CORE_D_SERVICE = require.resolve('./your-service');
+// optional to get logging from the child process
+process.env.CORE_D_DEBUG = 'true';
 
 const core_d = require('core_d');
 
