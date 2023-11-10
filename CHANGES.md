@@ -1,8 +1,31 @@
 # Changes
 
+## 6.1.0
+
+- 🍏 [`b3b36ba`](https://github.com/mantoni/core_d.js/commit/b3b36ba3472471fc06944eb26638c40fed00a9e0)
+  feat: added debug with flag (#27) (Amrit Kahlon)
+- 📚 [`e1f489a`](https://github.com/mantoni/core_d.js/commit/e1f489a1cfee8441915d913ef70bdb935c63b178)
+  Update compatibility notes
+- ✨ [`7f10fd1`](https://github.com/mantoni/core_d.js/commit/7f10fd15f6cb82bc26910e4120147e715f10417f)
+  npm audit
+- ✨ [`5b6615a`](https://github.com/mantoni/core_d.js/commit/5b6615ab3b37e01b6e1574dbd4356f6277d1396b)
+  Upgrade mocha to v10
+- ✨ [`0df0d6d`](https://github.com/mantoni/core_d.js/commit/0df0d6d98b1d5ad96e56d20f2bd25af8e3b895af)
+  Update eslint-plugin-mocha
+- ✨ [`def70eb`](https://github.com/mantoni/core_d.js/commit/def70eb4816658f212ef14be6aeb543cbd3a53a5)
+  Update eslint
+- ✨ [`a21e74b`](https://github.com/mantoni/core_d.js/commit/a21e74b80ebdd4aceb385732d3e7a50e6287cee9)
+  Update GitHub action
+- ✨ [`e8960ee`](https://github.com/mantoni/core_d.js/commit/e8960eebdf0d89a08a1fd12bbcce5538f2d12cc7)
+  Support node 18 and 20
+- ✨ [`88e407c`](https://github.com/mantoni/core_d.js/commit/88e407cc36491e8f9265f49c9815402cd7454fbe)
+  Upgrade referee-sinon
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2023-11-10._
+
 ## 6.0.0
 
-- [`d76e925`](https://github.com/mantoni/core_d.js/commit/d76e92541e1de2602bc8716520fb4bd1417245dd)
+- 💥 [`d76e925`](https://github.com/mantoni/core_d.js/commit/d76e92541e1de2602bc8716520fb4bd1417245dd)
   fix: write errors to stderr (#26) (fsouza)
 
 _Released by [Maximilian Antoni](https://github.com/mantoni) on 2023-09-22._
