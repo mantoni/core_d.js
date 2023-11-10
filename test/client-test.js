@@ -34,7 +34,7 @@ describe('client', () => {
   });
 
   afterEach(() => {
-    delete process.exitCode;
+    process.exitCode = undefined;
   });
 
   function verifyNotRunning(method, ...args) {

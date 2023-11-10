@@ -29,7 +29,7 @@ describe('launcher', () => {
   });
 
   afterEach(() => {
-    delete process.exitCode;
+    process.exitCode = undefined;
     delete global.core_d_launching;
   });
 
