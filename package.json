@@ -40,7 +40,7 @@
     "eslint": "^8.53.0",
     "eslint-plugin-mocha": "^10.2.0",
     "eslint-plugin-node": "^11.1.0",
-    "mocha": "^9.2.0",
+    "mocha": "^10.2.0",
     "mocha-referee-sinon": "^1.0.0"
   },
   "dependencies": {
