@@ -116,6 +116,7 @@ Or if you want to work with stdin:
 
 ## Compatibility
 
+- `6.0.0`: node 12, 14, 16, 18 and 20
 - `5.0.0`: node 12, 14 and 16
 - `4.0.0`: node 12, 14 and 16
 - `3.0.0`: node 10, 12 and 14
