@@ -29,6 +29,7 @@ describe('client', () => {
   beforeEach(() => {
     socket = new EventEmitter();
     socket.end = sinon.fake();
+    socket.setEncoding = sinon.fake();
     sinon.replace(out, 'write', sinon.fake());
     sinon.replace(out, 'writeError', sinon.fake());
   });

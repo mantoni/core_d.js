@@ -13,6 +13,7 @@ function createConnection() {
   const connection = new EventEmitter();
   connection.write = sinon.fake();
   connection.end = sinon.fake();
+  connection.setEncoding = sinon.fake();
   return connection;
 }
 
