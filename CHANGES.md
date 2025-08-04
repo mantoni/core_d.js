@@ -1,5 +1,12 @@
 # Changes
 
+## 6.1.1
+
+- 🐛 [`5c45150`](https://github.com/mantoni/core_d.js/commit/5c451501f26efaa181571eeececc30bc8b7792bf)
+  fix: UTF8 support (#32) (Alex Efros)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2025-08-04._
+
 ## 6.1.0
 
 - 🍏 [`b3b36ba`](https://github.com/mantoni/core_d.js/commit/b3b36ba3472471fc06944eb26638c40fed00a9e0)
